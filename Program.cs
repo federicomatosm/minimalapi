@@ -63,6 +63,33 @@ app.MapDelete("api/cars/{id}", (int id) =>
    .WithTags("Cars");
 #endregion
 
+#region motorbikes endpoints
+app.MapPost("api/motorbikes",
+    (Motorbike motorbike) =>
+    {
+        return motorbike;
+    })
+    .WithName("CreateMotorbike")
+    .WithTags("Motorbikes");
+
+// Default endpoints
+app.MapPut("api/motorbikes/{id}",
+    (Motorbike motorbike) =>
+    {
+        return motorbike;
+    })
+    .WithName("UpdateMotorbike")
+    .WithTags("Motorbikes");
+
+app.MapDelete("api/motorbikes/{id}",
+    (int id) =>
+    {
+        return $"Motorbike with id: {id} was succesfully deleted";
+    })
+    .WithName("DeleteMotorbike")
+    .WithTags("Motorbikes");
+#endregion
+
 app.Run();
 
 
@@ -79,5 +106,17 @@ public record Car
     public int RacedForHours { get; set; }
 
 
+}
+
+public record Motorbike
+{
+    public int Id { get; set; }
+    public string TeamName { get; set; }
+    public int Speed { get; set; }
+    public double MelfunctionChance { get; set; }
+    public int MelfunctionsOccured { get; set; }
+    public int DistanceCoverdInMiles { get; set; }
+    public bool FinishedRace { get; set; }
+    public int RacedForHours { get; set; }
 }
 #endregion
